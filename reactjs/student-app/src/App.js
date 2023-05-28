@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -10,10 +11,10 @@ function App() {
 
   // useEffect(() => {
   //   const fetchData = async () => {
-  //     const datesheet = await axios.get('http://localhost:3001/datesheet');
-  //     const marks = await axios.get('http://localhost:3001/marks');
-  //     const bonacert = await axios.get('http://localhost:3001/bonacert');
-  //     const marksheet = await axios.get('http://localhost:3001/marksheet');
+  //     const datesheet = await axios.get('http://localhost:7777/datesheet');
+  //     const marks = await axios.get('http://localhost:7777/marks');
+  //     const bonacert = await axios.get('http://localhost:7777/bonacert');
+  //     const marksheet = await axios.get('http://localhost:7777/marksheet');
 
   //     setData([datesheet.data, marks.data, bonacert.data, marksheet.data]);
   //     setIsLoading(false);
@@ -36,20 +37,20 @@ function App() {
   const [showMarksheet, setShowMarksheet] = useState(false);
 
   const handleShowDatesheet = () => {
-    fetch('http://localhost:3001/datesheet')
+    fetch('http://localhost:7777/datesheet')
       .then(response => response.blob())
       .then(blob => {
-        const url = URL.createObjectURL(blob);
-        setDatesheetUrl(url);
-        setShowDatesheet(true);
-      })
-      .catch(error => {
-        console.error('Error downloading Datesheet: ', error);
-      });
-    };
+      const url = URL.createObjectURL(blob);
+      setDatesheetUrl(url);
+      setShowDatesheet(true);
+    })
+    .catch(error => {
+      console.error('Error downloading Datesheet: ', error);
+    });
+  };
 
   const handleShowMarks = () => {
-    fetch('http://localhost:3001/marks')
+    fetch('http://localhost:7777/marks')
       .then(response => response.blob())
       .then(blob => {
         const url = URL.createObjectURL(blob);
@@ -62,7 +63,7 @@ function App() {
     };
 
     const handleShowBona = () => {
-        fetch('http://localhost:3001/bonacert')
+        fetch('http://localhost:7777/bonacert')
           .then(response => response.blob())
           .then(blob => {
             const url = URL.createObjectURL(blob);
@@ -75,7 +76,7 @@ function App() {
         };
     
     const handleShowMarksheet = () => {
-          fetch('http://localhost:3001/marksheet')
+          fetch('http://localhost:7777/marksheet')
             .then(response => response.blob())
             .then(blob => {
               const url = URL.createObjectURL(blob);
@@ -108,50 +109,50 @@ function App() {
   };
 
   return (
-      <div class='container'>
+      <div className='container'>
         <h1>Student Examination Module</h1>
         <div>
-        <div class=''>
-        <button class='button' onClick={showDatesheet ? handleCloseDatesheet : handleShowDatesheet}>
+        <div className=''>
+        <button className='button' onClick={showDatesheet ? handleCloseDatesheet : handleShowDatesheet}>
           {showDatesheet ? 'Close Datesheet' : 'Show Datesheet'}
         </button>
         {
           showDatesheet && 
           <div>
-            <embed class='output' src={datesheetUrl} type="application/pdf" width="100%" height="777px" />
+            <embed className='output' src={datesheetUrl} type="application/pdf" width="100%" height="777px" />
           </div>
         }
         </div>
         <div>
-        <button class='button' onClick={showMarks ? handleCloseMarks : handleShowMarks}>
+        <button className='button' onClick={showMarks ? handleCloseMarks : handleShowMarks}>
           {showMarks ? 'Close Marks' : 'Show Marks'}
         </button>
         {
           showMarks && 
           <div>
-            <embed class='output' src={marksUrl} type="application/pdf" width="100%" height="777px" />
+            <embed className='output' src={marksUrl} type="application/pdf" width="100%" height="777px" />
           </div>
         }
         </div>
         <div>
-        <button class='button' onClick={showBona ? handleCloseBona : handleShowBona}>
+        <button className='button' onClick={showBona ? handleCloseBona : handleShowBona}>
           {showBona ? 'Close Bonafide Certificate' : 'Show Bonafide Certificate'}
         </button>
         {
           showBona && 
           <div>
-            <embed class='output' src={bonaUrl} type="application/pdf" width="100%" height="777px" />
+            <embed className='output' src={bonaUrl} type="application/pdf" width="100%" height="777px" />
           </div>
         }
         </div>
         <div>
-        <button class='button' onClick={showMarksheet ? handleCloseMarksheet : handleShowMarksheet}>
+        <button className='button' onClick={showMarksheet ? handleCloseMarksheet : handleShowMarksheet}>
           {showMarksheet ? 'Close Digital Marksheet' : 'Show Digital Marksheet'}
         </button>
         {
           showMarksheet && 
           <div>
-            <embed class='output' src={marksheetUrl} type="application/pdf" width="100%" height="777px" />
+            <embed className='output' src={marksheetUrl} type="application/pdf" width="100%" height="777px" />
           </div>
         }
         </div>
